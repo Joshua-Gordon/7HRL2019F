@@ -4,7 +4,7 @@ LDFLAGS += `sdl2-config --libs` -lSDL2_ttf -lSDL2_image  -lSDL2_gfx
 
 TARGET := 7HRL2019F
 
-SRC := *.cpp
+SRC := main.cpp Menu.cpp Texture.cpp Button.cpp
 
 DEPS := $(addprefix .build/,$(SRC:.cpp=.d))
 OBJS := $(addprefix .build/,$(SRC:.cpp=.o))
