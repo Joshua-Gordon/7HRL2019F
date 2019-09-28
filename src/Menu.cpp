@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "Menu.h"
 
 #define IMAGE 0
 #define TEXT 1
