@@ -79,3 +79,7 @@ void Button::setText(const string &text_) {
     text = tex;
     SDL_FreeSurface(sur);
 }
+
+void Button::handle(SDL_Event& e) {
+
+}

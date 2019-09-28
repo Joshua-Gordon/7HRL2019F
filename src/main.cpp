@@ -22,6 +22,8 @@ int main() {
     SDL_initFramerate(&FPSMan);
     SDL_setFramerate(&FPSMan, 60);
 
+    Menu m(0,rend);
+
     bool running = true;
     while(running) {
         SDL_RenderClear(rend);
@@ -29,6 +31,7 @@ int main() {
         SDL_RenderPresent(rend);
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
+            m.handle(event);
             switch (event.type) {
                 case SDL_QUIT:
                     return 1;
@@ -39,8 +42,9 @@ int main() {
                     }
             }
         }
-        
         SDL_framerateDelay(&FPSMan);
+        m.render();
+        sleep(1);
     }
 
     return 0;
