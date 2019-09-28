@@ -3,6 +3,7 @@
         "*.zim": "log",
         "iosfwd": "cpp",
         "__config": "cpp",
-        "__nullptr": "cpp"
+        "__nullptr": "cpp",
+        "vector": "cpp"
     }
 }

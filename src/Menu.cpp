@@ -55,7 +55,6 @@ void Menu::loadFile(int i) {
 }
 
 void Menu::render() {
-
     image.setRenderer(rend);
     image.render(0,0);
     for(auto i = buttons.begin(); i != buttons.end(); ++i) {

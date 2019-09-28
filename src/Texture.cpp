@@ -66,10 +66,6 @@ void Texture::render(int x, int y, SDL_Rect* clip) {
         renderQuad.h = clip->h;
     }
 
-	//fprintf(stderr, "T::r %p %d,%d,%d,%d @ (%d,%d)\n", clip, renderQuad.x, renderQuad.y, renderQuad.w, renderQuad.h,x,y);
-	//if(clip) {
-	//	fprintf(stderr, "T::r  - clip %d,%d,%d,%d\n", clip->x, clip->y, clip->w, clip->h);
-	//}
     SDL_RenderCopy(renderer_, texture_,clip,&renderQuad);
 }
 
