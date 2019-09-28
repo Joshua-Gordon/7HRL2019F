@@ -59,7 +59,8 @@ void Button::load(string &format) {
                 state = TEXT;
                 break;
             case TEXT:
-                //set text here
+                setText(format.substr(prev,cur));
+                state = 2;
                 break;
             default:
                 break;
@@ -81,6 +82,7 @@ void Button::setText(const string &text_) {
     SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, sur);
     text = tex;
     SDL_FreeSurface(sur);
+    rect.w = text_.length()*20;
 }
 
 void Button::handle(SDL_Event& e) {

@@ -33,11 +33,13 @@ Menu::Menu(int i,SDL_Renderer* r) {
                     break;
                 }
                 text += line + "\n";
+                cerr << "Wrote text\n";
                 break;
             case BTNS:
-                Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,0,100,100);
+                Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,80*buttons.size(),100,100);
                 b.load(line);
                 buttons.push_back(b);
+                cerr << "Created button\n";
                 break;
         }
         if(file.eof()) {
