@@ -61,7 +61,6 @@ void Menu::loadFile(int i) {
 }
 
 void Menu::render() {
-
     image.setRenderer(rend);
     image.render(0,0);
     caption.render(0,480);
