@@ -7,7 +7,8 @@
 
 using namespace std;
 
-Button::Button(SDL_Renderer *rend, string fontPath, int fontSize, string text_, int x_, int y_, int w_, int h_) {
+Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, string text_, int x_, int y_, int w_, int h_) {
+    rend = rend_;
     rect.x = x_;
     rect.y = y_;
     rect.w = w_;
