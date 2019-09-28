@@ -25,5 +25,4 @@ private:
     string text;
     Texture image;
     vector<Button> buttons;
-
 };

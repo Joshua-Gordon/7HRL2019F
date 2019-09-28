@@ -5,20 +5,18 @@
 
 #include <string>
 #include <assert.h>
+#include <iostream>
 
 using namespace std;
 
 Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEventId_, string text_, int x_, int y_, int w_, int h_) {
-
-    nextEventId = nextEventId_;
-
     rend = rend_;
     rect.x = x_;
     rect.y = y_;
     rect.w = w_;
     rect.h = h_;
     
-    TTF_Font *font = TTF_OpenFont(fontPath.c_str(), fontSize);
+    font = TTF_OpenFont(fontPath.c_str(), fontSize);
     assert(font != NULL);
 
     SDL_Color col = {255, 255, 255, 255};
@@ -27,6 +25,19 @@ Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEvent
     SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, sur);
     text = tex;
     SDL_FreeSurface(sur);
+}
+
+Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEventId_, int x_, int y_, int w_, int h_) {
+    rend = rend_;
+    rect.x = x_;
+    rect.y = y_;
+    rect.w = w_;
+    rect.h = h_;
+
+    font = TTF_OpenFont(fontPath.c_str(), fontSize);
+    assert(font != NULL);
+
+    text = nullptr;
 }
 
 void Button::render() {
@@ -53,4 +64,18 @@ void Button::load(string &format) {
         }
         prev = cur;
     }
+}
+
+void Button::setText(const string &text_) {
+    if (text != nullptr) {
+        SDL_DestroyTexture(text);
+    }
+
+    SDL_Color col = {255, 255, 255, 255};
+    assert(font != nullptr);
+    SDL_Surface *sur = TTF_RenderText_Solid(font, text_.c_str(), col);
+    assert(sur != nullptr);
+    SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, sur);
+    text = tex;
+    SDL_FreeSurface(sur);
 }

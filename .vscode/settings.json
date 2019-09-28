@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "*.zim": "log",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp"
     }
 }
