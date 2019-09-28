@@ -14,7 +14,9 @@ int main() {
     TTF_Init();
     SDL_Window *win = SDL_CreateWindow("7HRL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINWIDTH, WINHEIGHT, SDL_WINDOW_SHOWN);
     SDL_Renderer *rend = SDL_CreateRenderer(win, -1, SDL_RENDERER_PRESENTVSYNC);
-    Button but(rend, "assets/Lato.ttf", 20, "Hello!", 0, 0, 100, 100);
+    Button but(rend, "assets/Lato.ttf", 20, 0, "Hello!", 0, 0, 100, 100);
+
+    Menu m(0,rend);
 
     while(1) {
         SDL_RenderClear(rend);

@@ -8,7 +8,10 @@
 
 using namespace std;
 
-Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, string text_, int x_, int y_, int w_, int h_) {
+Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEventId_, string text_, int x_, int y_, int w_, int h_) {
+
+    nextEventId = nextEventId_;
+
     rend = rend_;
     rect.x = x_;
     rect.y = y_;
@@ -28,4 +31,26 @@ Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, string text_,
 
 void Button::render() {
     SDL_RenderCopy(rend, text, NULL, &rect);
+}
+
+
+#define ID 0
+#define TEXT 1
+void Button::load(string &format) {
+    int state = ID;
+    size_t cur = format.find("-"),prev = 0;
+    while(cur != string::npos) {
+        switch(state) {
+            case ID:
+                nextEventId = atoi(format.substr(prev,cur).c_str());
+                state = TEXT;
+                break;
+            case TEXT:
+                //set text here
+                break;
+            default:
+                break;
+        }
+        prev = cur;
+    }
 }

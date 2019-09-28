@@ -11,12 +11,16 @@ using namespace std;
 
 class Menu {
 public:
-    Menu(int);
+    Menu(int,SDL_Renderer*);
 
+    void render();
     void handle(SDL_Event& e);
 
 
 private:
+
+    SDL_Renderer* rend;
+
     int id;
     string text;
     Texture image;
