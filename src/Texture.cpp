@@ -22,17 +22,17 @@ bool Texture::loadFromFile(std::string path) {
         fprintf(stderr,"Could not load image %s!\n",path.c_str());
         fprintf(stderr,"Path is %s\n",path.c_str());
     } else {
-        fprintf(stderr,"Loaded image %s!\n",path.c_str());
+        // fprintf(stderr,"Loaded image %s!\n",path.c_str());
     }
     
     SDL_SetColorKey(loadedSurface,SDL_TRUE, SDL_MapRGB(loadedSurface->format,0xFF,0x00,0xFF));
 
-    fprintf(stderr,"Renderer is: %p\n",renderer_);
+    // fprintf(stderr,"Renderer is: %p\n",renderer_);
     newTexture = SDL_CreateTextureFromSurface(renderer_, loadedSurface);
     if(newTexture == NULL) {
         fprintf(stderr,"Could not create texture %s!\n",path.c_str());
     } else {
-        fprintf(stderr,"Created texture %s!\n",path.c_str());
+        // fprintf(stderr,"Created texture %s!\n",path.c_str());
     }
 
     w_ = loadedSurface->w;

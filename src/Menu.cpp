@@ -5,7 +5,7 @@
 #define BTNS 2
 
 Menu::Menu(int i,SDL_Renderer* r) {
-    cerr << "Menu constructor" << endl;
+    // cerr << "Menu constructor" << endl;
 
     rend = r;
 
@@ -19,17 +19,17 @@ void Menu::loadFile(int i) {
     text = "";
     id = i;
     string filepath = "events/" + to_string(id) + ".ev";
-    cerr << "Loading file " << "filepath";
+    // cerr << "Loading file " << "filepath";
 
     ifstream file(filepath);
     string line;
     while(getline(file,line)) {
-        cerr << "Read line: " << line << endl;
+        // cerr << "Read line: " << line << endl;
         switch(state) {
             case IMAGE:
                 image.setRenderer(rend);
                 image.loadFromFile("assets/"+line);
-                cerr << "Loaded image assets/" << line << endl;
+                // cerr << "Loaded image assets/" << line << endl;
                 state = TEXT;
                 break;
             case TEXT:
@@ -38,13 +38,13 @@ void Menu::loadFile(int i) {
                     break;
                 }
                 text += line + "\n";
-                cerr << "Wrote text\n";
+                // cerr << "Wrote text\n";
                 break;
             case BTNS:
                 Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,680+80*buttons.size(),100,100);
                 b.load(line);
                 buttons.push_back(b);
-                cerr << "Created button\n";
+                // cerr << "Created button\n";
                 break;
         }
         if(file.eof()) {
@@ -57,7 +57,7 @@ void Menu::loadFile(int i) {
     SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, sur);
     caption = Texture(rend,tex,720,200);
 
-    cerr << "Loaded file\n";
+    // cerr << "Loaded file\n";
 }
 
 void Menu::render() {

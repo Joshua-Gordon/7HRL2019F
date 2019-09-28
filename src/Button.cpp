@@ -2,6 +2,7 @@
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_ttf.h"
+#include "SDL2/SDL_image.h"
 
 #include <string>
 #include <assert.h>
@@ -17,6 +18,7 @@ Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEvent
     rect.y = y_;
     rect.w = w_;
     rect.h = h_;
+    nextEventId = nextEventId_;
     
     font = TTF_OpenFont(fontPath.c_str(), fontSize);
     assert(font != NULL);
@@ -35,11 +37,27 @@ Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEvent
     rect.y = y_;
     rect.w = w_;
     rect.h = h_;
+    nextEventId = nextEventId_;
 
     font = TTF_OpenFont(fontPath.c_str(), fontSize);
     assert(font != NULL);
 
     text = nullptr;
+}
+
+Button::Button(SDL_Renderer *rend_, string filePath, int nextEventId_, int x_, int y_, int w_, int h_) {
+    rend = rend_;
+    rect.x = x_;
+    rect.y = y_;
+    rect.w = w_;
+    rect.h = h_;
+    nextEventId = nextEventId_;
+
+    SDL_Surface *sur = IMG_Load(filePath.c_str());
+    assert(sur != nullptr);
+    SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, sur);
+    text = tex;
+    SDL_FreeSurface(sur);
 }
 
 void Button::render() {

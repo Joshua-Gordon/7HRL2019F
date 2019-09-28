@@ -7,9 +7,10 @@ using namespace std;
 
 class Button {
 public:
+    Button(SDL_Renderer *rend_, string filePath, int nextEventId_, int x_, int y_, int w_, int h_);
     Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEventId_, string text, int x_, int y_, int w_, int h_);
     Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEventId_, int x_, int y_, int w_, int h_);
-    
+
     void render();
     void handle(SDL_Event& e);
     void load(string &format);
