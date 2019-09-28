@@ -9,6 +9,8 @@
 
 using namespace std;
 
+extern int eventNum;
+
 Button::Button(SDL_Renderer *rend_, string fontPath, int fontSize, int nextEventId_, string text_, int x_, int y_, int w_, int h_) {
     rend = rend_;
     rect.x = x_;
@@ -81,5 +83,12 @@ void Button::setText(const string &text_) {
 }
 
 void Button::handle(SDL_Event& e) {
-
+    if (e.type == SDL_MOUSEBUTTONDOWN) {
+        int mX;
+        int mY;
+        SDL_GetMouseState(&mX, &mY);
+        if (mX >= rect.x && mX <= (rect.x + rect.w) && mY >= rect.y && mY <= (rect.y + rect.h)) {
+            eventNum = nextEventId;
+        }
+    }
 }
