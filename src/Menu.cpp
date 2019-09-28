@@ -5,6 +5,7 @@
 #define BTNS 2
 
 Menu::Menu(int i,SDL_Renderer* r) {
+    cerr << "Menu constructor" << endl;
 
     rend = r;
 
@@ -12,15 +13,18 @@ Menu::Menu(int i,SDL_Renderer* r) {
 
     text = "";
     id = i;
-    string filepath = to_string(id) + ".ev";
+    string filepath = "events/" + to_string(id) + ".ev";
+    cerr << "Loading file " << "filepath";
 
     ifstream file(filepath);
     string line;
     while(getline(file,line)) {
+        cerr << "Read line: " << line << endl;
         switch(state) {
             case IMAGE:
-                image.loadFromFile("assets/"+line);
                 image.setRenderer(rend);
+                image.loadFromFile("assets/"+line);
+                cerr << "Loaded image assets/" << line << endl;
                 state = TEXT;
                 break;
             case TEXT:
@@ -36,12 +40,17 @@ Menu::Menu(int i,SDL_Renderer* r) {
                 buttons.push_back(b);
                 break;
         }
+        if(file.eof()) {
+            break;
+        }
     }
+    cerr << "Loaded file\n";
 
 }
 
 void Menu::render() {
 
+    image.setRenderer(rend);
     image.render(0,0);
     for(auto i = buttons.begin(); i != buttons.end(); ++i) {
         i->render();

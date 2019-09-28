@@ -62,7 +62,8 @@ void Button::load(string &format) {
             default:
                 break;
         }
-        prev = cur;
+        prev = cur+1;
+        cur = format.find("-",prev);
     }
 }
 
