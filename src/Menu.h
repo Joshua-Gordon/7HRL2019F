@@ -16,7 +16,8 @@ public:
 
     void render();
     void handle(SDL_Event& e);
-
+    void loadFile(int);
+    void setEvent(int eventId);
 
 private:
 

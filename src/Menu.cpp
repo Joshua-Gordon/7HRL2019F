@@ -9,6 +9,11 @@ Menu::Menu(int i,SDL_Renderer* r) {
 
     rend = r;
 
+    loadFile(i);
+}
+
+void Menu::loadFile(int i) {
+    buttons.clear();
     int state = IMAGE;
 
     text = "";
@@ -36,7 +41,7 @@ Menu::Menu(int i,SDL_Renderer* r) {
                 cerr << "Wrote text\n";
                 break;
             case BTNS:
-                Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,80*buttons.size(),100,100);
+                Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,480+80*buttons.size(),100,100);
                 b.load(line);
                 buttons.push_back(b);
                 cerr << "Created button\n";
@@ -47,7 +52,6 @@ Menu::Menu(int i,SDL_Renderer* r) {
         }
     }
     cerr << "Loaded file\n";
-
 }
 
 void Menu::render() {
@@ -64,4 +68,12 @@ void Menu::handle(SDL_Event& e) {
     for(auto i = buttons.begin(); i != buttons.end(); ++i) {
         i->handle(e);
     }
+}
+
+void Menu::setEvent(int eventId) {
+    if (id == eventId) {
+        return;
+    }
+
+    loadFile(eventId);
 }

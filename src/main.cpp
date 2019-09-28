@@ -5,8 +5,8 @@
 
 #include <unistd.h>
 
-#define WINWIDTH 640
-#define WINHEIGHT 480
+#define WINWIDTH 720
+#define WINHEIGHT 720
 
 int eventNum = 0;
 
@@ -25,6 +25,7 @@ int main() {
     bool running = true;
     while(running) {
         SDL_RenderClear(rend);
+        m.setEvent(eventNum);
         m.render();
         SDL_RenderPresent(rend);
         SDL_Event event;
