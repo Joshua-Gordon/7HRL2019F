@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.zim": "log",
+        "iosfwd": "cpp"
+    }
+}
