@@ -4,6 +4,7 @@
         "iosfwd": "cpp",
         "__config": "cpp",
         "__nullptr": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "string": "cpp"
     }
 }

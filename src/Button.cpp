@@ -55,11 +55,11 @@ void Button::load(string &format) {
     while(cur != string::npos) {
         switch(state) {
             case ID:
-                nextEventId = atoi(format.substr(prev,cur).c_str());
+                nextEventId = atoi(format.substr(prev,cur-prev).c_str());
                 state = TEXT;
                 break;
             case TEXT:
-                setText(format.substr(prev,cur));
+                setText(format.substr(prev,cur-prev));
                 state = 2;
                 break;
             default:
