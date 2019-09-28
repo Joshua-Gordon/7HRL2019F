@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #define WINWIDTH 720
-#define WINHEIGHT 720
+#define WINHEIGHT 1080
 
 int eventNum = 0;
 

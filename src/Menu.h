@@ -26,5 +26,6 @@ private:
     int id;
     string text;
     Texture image;
+    Texture caption;
     vector<Button> buttons;
 };

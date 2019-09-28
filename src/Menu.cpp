@@ -41,7 +41,7 @@ void Menu::loadFile(int i) {
                 cerr << "Wrote text\n";
                 break;
             case BTNS:
-                Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,480+80*buttons.size(),100,100);
+                Button b(rend,"assets/Lato.ttf",20,0,"Hello!",0,680+80*buttons.size(),100,100);
                 b.load(line);
                 buttons.push_back(b);
                 cerr << "Created button\n";
@@ -51,6 +51,12 @@ void Menu::loadFile(int i) {
             break;
         }
     }
+    TTF_Font* font = TTF_OpenFont("assets/Lato.ttf",20);
+    SDL_Color col = {255, 255, 255, 255};
+    SDL_Surface *sur = TTF_RenderText_Blended_Wrapped(font, text.c_str(), col,720);
+    SDL_Texture *tex = SDL_CreateTextureFromSurface(rend, sur);
+    caption = Texture(rend,tex,720,200);
+
     cerr << "Loaded file\n";
 }
 
@@ -58,6 +64,7 @@ void Menu::render() {
 
     image.setRenderer(rend);
     image.render(0,0);
+    caption.render(0,480);
     for(auto i = buttons.begin(); i != buttons.end(); ++i) {
         i->render();
     }
