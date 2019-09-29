@@ -33,16 +33,20 @@ int main() {
             startMenu.render();
             start.render();
             SDL_Event event;
-            SDL_PollEvent(&event);
-            start.handle(event);
-            switch (event.type) {
-                case SDL_QUIT:
-                    return 1;
-                case SDL_KEYDOWN:
-                    switch (event.key.keysym.sym) {
-                        case SDLK_q:
-                            running = false;
-                    }
+            while (SDL_PollEvent(&event)) {
+                switch (event.type) {
+                    case SDL_QUIT:
+                        return 1;
+                    case SDL_KEYDOWN:
+                        switch (event.key.keysym.sym) {
+                            case SDLK_q:
+                                running = false;
+                        }
+                        break;
+                    case SDL_MOUSEBUTTONDOWN:
+                        start.handle(event);
+                        break;
+                }
             }
             SDL_RenderPresent(rend);
             SDL_framerateDelay(&FPSMan);
@@ -54,11 +58,11 @@ int main() {
         SDL_RenderPresent(rend);
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
-            m.handle(event);
             switch (event.type) {
                 case SDL_QUIT:
                     return 1;
                 case SDL_KEYDOWN:
+                    m.handle(event);
                     switch (event.key.keysym.sym) {
                         case SDLK_q:
                             running = false;
@@ -66,9 +70,10 @@ int main() {
                         case SDLK_UP:
                             up = true;
                             break;
-                        case 13: {
+                        case 13: { //Enter
                             if (up) {
                                 eventNum = -1;
+                                up = false;
                             }
                             break;
                         }
