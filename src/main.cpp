@@ -9,6 +9,7 @@
 #define WINHEIGHT 1080
 
 int eventNum = -1;
+bool up = false;
 
 int main() {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -61,6 +62,23 @@ int main() {
                     switch (event.key.keysym.sym) {
                         case SDLK_q:
                             running = false;
+                            break;
+                        case SDLK_UP:
+                            up = true;
+                            break;
+                        case 13: {
+                            if (up) {
+                                eventNum = -1;
+                            }
+                            break;
+                        }
+                    }
+                case SDL_KEYUP:
+                    switch (event.key.keysym.sym) {
+                        case SDLK_UP:
+                            break;
+                        default:
+                            up = false;
                     }
             }
         }
