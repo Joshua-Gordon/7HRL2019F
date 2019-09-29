@@ -58,6 +58,7 @@ int main() {
         SDL_RenderPresent(rend);
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
+            m.handle(event);
             switch (event.type) {
                 case SDL_QUIT:
                     return 1;
